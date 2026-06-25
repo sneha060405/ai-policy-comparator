@@ -79,14 +79,6 @@ with st.sidebar:
     st.markdown("### 📄 Supported Formats")
     st.markdown("• PDF (`.pdf`)\n• Word Document (`.docx`)\n• Plain Text (`.txt`)")
     st.markdown("---")
-    st.markdown("### ⚙️ Groq API Key")
-    api_key_input = st.text_input(
-        "Groq API Key (Free)", type="password",
-        help="Get your free key at console.groq.com",
-        value=os.getenv("GROQ_API_KEY", "")
-    )
-    if api_key_input:
-        os.environ["GROQ_API_KEY"] = api_key_input
 
 # ── File Upload ───────────────────────────────────────────────────────────────
 col1, col2 = st.columns(2)
@@ -113,9 +105,7 @@ if file1 is None or file2 is None:
     st.caption("⬆️ Upload both documents to enable comparison.")
 
 if run_btn and file1 and file2:
-    if not os.getenv("GROQ_API_KEY"):
-        st.error("❌ Please provide your Groq API key in the sidebar. Get one free at console.groq.com")
-        st.stop()
+    
 
     with st.spinner("📖 Extracting text from documents..."):
         try:
