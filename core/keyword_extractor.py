@@ -4,16 +4,16 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import nltk
 from nltk.corpus import stopwords
 import spacy
+from spacy.cli import download as spacy_download
 
 nltk.download('stopwords', quiet=True)
 nltk.download('punkt', quiet=True)
 
-# Load spaCy model
+# Load spaCy model - auto download if not present
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
-    import subprocess
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    spacy_download("en_core_web_sm")
     nlp = spacy.load("en_core_web_sm")
 
 POLICY_CONCEPTS = [
