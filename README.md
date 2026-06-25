@@ -2,39 +2,44 @@
 
 A Streamlit web application that compares two AI policy documents using NLP and LLM analysis.
 
-##  Features
-- Upload PDF, DOCX, or TXT policy documents
-- AI-generated summaries via Groq (Llama 3)
-- Common themes with side-by-side comparison
-- Key regulatory differences highlighted
-- TF-IDF keyword extraction
-- Word clouds, radar charts, heatmaps
-- Named entity recognition (laws, orgs, locations)
-- Deep comparative insights
+## Live Demo
+[Try it here](https://ai-policy-comparator-agbd2qwmevavsgylv7dlvu.streamlit.app/)
+
+## What It Does
+Upload any two AI policy documents (PDF, DOCX, or TXT) and instantly get:
+- **Policy Summaries** — structured breakdown of each document
+- **Common Themes** — shared regulatory priorities side by side
+- **Key Differences** — how the two approaches diverge and why it matters
+- **Keywords & Concepts** — word clouds, TF-IDF charts, policy concept frequency heatmaps
+- **Deep Insights** — philosophical stance, geopolitical context, regulatory maturity analysis
 
 ## Tech Stack
 - **Frontend:** Streamlit
-- **LLM:** Groq API (Llama 3.3-70b)
-- **NLP:** spaCy, NLTK, scikit-learn
+- **LLM:** Groq API (Llama 3.3-70b) — free tier
+- **NLP:** NLTK, scikit-learn (TF-IDF)
 - **Visualization:** Plotly, Matplotlib, WordCloud
 - **PDF Extraction:** PyMuPDF
 
-## Setup & Run Locally
+## Sample Documents Tested
+- EU AI Act (2024) — 593,000 chars
+- India National AI Strategy — NITI Aayog — 278,000 chars
+- Similarity Score: 60/100 — same topic, very different regulatory philosophies
+
+## Run Locally
 
 1. Clone the repository
 ```bash
-   git clone https://github.com/YOUR_USERNAME/ai-policy-comparator.git
+   git clone https://github.com/sneha060405/ai-policy-comparator.git
    cd ai-policy-comparator
 ```
 
 2. Install dependencies
 ```bash
    pip install -r requirements.txt
-   python -m spacy download en_core_web_sm
-   python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt')"
+   python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt'); nltk.download('averaged_perceptron_tagger'); nltk.download('maxent_ne_chunker'); nltk.download('words')"
 ```
 
-3. Add your Groq API key
+3. Add your Groq API key (free at https://console.groq.com)
 ```bash
    cp .env.example .env
    # Edit .env and add your GROQ_API_KEY
@@ -44,19 +49,8 @@ A Streamlit web application that compares two AI policy documents using NLP and 
 ```bash
    streamlit run app.py
 ```
-## API Key Setup
-This app uses the **Groq API** which is completely free.
 
-1. Go to https://console.groq.com
-2. Sign up (no credit card needed)
-3. Create an API key
-4. Either:
-   - Paste it in the sidebar when the app opens, OR
-   - Create a `.env` file: `GROQ_API_KEY=your_key_here`
+## API Key
+The hosted version requires no setup — just open the link and upload documents.
 
-##  Sample Documents Tested
-- EU AI Act (2024)
-- India National AI Strategy (NITI Aayog)
-
-## Get a Free Groq API Key
-Visit https://console.groq.com to get a free API key.
+To run locally, get a free Groq API key at https://console.groq.com (no credit card needed) and add it to your `.env` file.
